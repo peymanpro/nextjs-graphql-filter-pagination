@@ -1,8 +1,9 @@
 import { Product } from "@/types/product";
-import { ProductGrid } from "./ProductGrid";
-import { ProductSkeleton } from "@/components/states/ProductSkeleton";
 import { EmptyProducts } from "@/components/states/EmptyProducts";
 import { Pagination } from "@/components/pagination/Pagination";
+import { ProductMobileList } from "./ProductMobileList";
+import { ProductTable } from "./ProductTable";
+import { ProductSkeleton } from "../states/ProductSkeleton";
 
 interface ProductSectionProps {
   loading: boolean;
@@ -39,7 +40,12 @@ export function ProductSection({
 
   return (
     <>
-      <ProductGrid products={products} />
+      <div className="hidden lg:block">
+        <ProductTable products={products} />
+      </div>
+      <div className="lg:hidden">
+        <ProductMobileList products={products} />
+      </div>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
